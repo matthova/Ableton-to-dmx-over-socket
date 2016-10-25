@@ -1,6 +1,6 @@
 #include <DmxSimple.h>
 
-const uint16_t dmx_channels = 36; // How many channels?
+const uint16_t dmx_channels = 44; // How many channels?
 byte dest[dmx_channels];          // Holds the desired value for each channel
 
 byte channelByte;
@@ -39,7 +39,7 @@ void setup() {
 // Write the most recent declared value for each channel
 void loop() {
   for (uint16_t i = 0; i < dmx_channels; i++) {
-    DmxSimple.write(i + 1, dest[i]);
+    DmxSimple.write(i, dest[i]);
   }
 }
 
