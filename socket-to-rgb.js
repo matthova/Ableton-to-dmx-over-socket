@@ -17,12 +17,13 @@ for (let i = 0; i < n_lights; i++ ) {
 // Set up port 1337 to receive OSC commands
 const oscServer = new osc.Server(1337, '0.0.0.0');
 oscServer.on("message", function (msg, rinfo) {
+  // console.log('message', msg);
   const channelRegex = /^\/(\w)(\d+)$/;
   const messageParse = channelRegex.exec(msg[0]);
   if (messageParse != undefined) {
     const color = messageParse[1];
     const channel = Number(messageParse[2]);
-    const amount = parseInt(Number(msg[1]).toFixed(5) * 255);
+    const amount = parseInt(Number(msg[1]));
     destination[color][channel - 1] = amount;
   }
 });
